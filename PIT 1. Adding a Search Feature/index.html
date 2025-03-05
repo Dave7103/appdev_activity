@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    </nav>
+</header>
+<img class="fit" src="lonely.jpg" alt="Image">
+<p>I am an image and I'm all by myself</p>
+<div class="page-content">
+    <h1>Hello! I am a text with the largest heading</h1>
+    <div class="section" id="about">
+        <h2>About</h2>
+        <p>I am IT student in USTP</p>
+    </div>
+    <div class="section" id="education">
+        <h2>Education</h2>
+        <p>I am learning in USTP</p>
+    </div>
+    <div class="section" id="skills">
+        <h2>Skills</h2>
+        <p>I know how to use HTML, CSS and basic JavaScript for web development.</p>
+    </div>
+    <div class="section" id="portfolio">
+        <h2>Portfolio</h2>
+        <p>My portfolio includes several web development projects, including personal websites, simple web applications, and design layouts.</p>
+    </div>
+    <div class="section" id="contact">
+        <h2>Contact</h2>
+        <p>You can contact me via email at example@email.com or through my social media accounts.</p>
+    </div>
+</div>
+<section class="subjects">
+    <h1>Subjects Taken</h1>
+
+<!-- Search Bar -->
+<input type="text" id="search-bar" placeholder="Search subject..." oninput="handleSearch()">
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Year Level</th>
+            <th>Semester</th>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Credit</th>
+        </tr>
+    </thead>
+    <tbody id="subjects-list">
+        <!-- Subjects will load here -->
+    </tbody>
+</table>
+
+<script>
+    let coursesData = []; // Store JSON data globally
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('course.json')
+            .then(response => response.json())
+            .then(data => {
+                coursesData = data.courses; 
+                displayCourses(coursesData);
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    });
+
+    function displayCourses(courses) {
+        const subjectsList = document.getElementById('subjects-list');
+        subjectsList.innerHTML = ""; // Clear previous data
+        courses.forEach(course => {
+            const row = `
+            <tr>
+                <td>${course.year_level}</td>
+                <td>${course.sem}</td>
+                <td>${course.code}</td>
+                <td>${course.description}</td>
+                <td>${course.credit}</td>
+            </tr>`;
+            subjectsList.innerHTML += row;
+        });
+    }
+
+    function handleSearch() {
+        const query = document.getElementById("search-bar").value.toLowerCase();
+        const filteredCourses = coursesData.filter(course =>
+            course.code.toLowerCase().includes(query) ||
+            course.description.toLowerCase().includes(query) ||
+            course.year_level.toString().includes(query)
+        );
+        displayCourses(filteredCourses);
+    }
+</script>
+</body>
+</html>
