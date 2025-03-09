@@ -1,6 +1,8 @@
 {
-    "homepage": "https://dave7103.github.io/appdev_activity",
+    "homepage": "https://dave7103.github.io/appdev_activity/PIT_2",
     "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
       "predeploy": "npm run build",
       "deploy": "gh-pages -d build"
     }
