@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .container {
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: white;
+  }
+  
+  .light-mode {
+    background-color: white;
+    color: black;
+  }
+  
+  .input-container {
+    margin: 10px 0;
+  }
+  
+  input[type="text"] {
+    padding: 5px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
